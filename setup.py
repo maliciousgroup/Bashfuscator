@@ -6,7 +6,7 @@ with open("README.md") as f:
 
 setup(
     name="bashfuscator",
-    version="0.0.1.1",
+    version="0.0.1",
     description="Configurable and extendable Bash obfuscation framework - modified by Malicious Group",
     license="MIT",
     long_description=longDescription,
