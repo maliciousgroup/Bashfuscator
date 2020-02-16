@@ -60,7 +60,6 @@ class ObfuscationHandler(object):
             self.writeDir = args.write_dir
             self.full_ascii_strings = args.full_ascii_strings
             self.debug = args.debug
-            self.clip = args.clip
             self.originalCmd = args.command
 
             if args.choose_mutators:
@@ -148,7 +147,6 @@ class ObfuscationHandler(object):
             self.writeDir = "/tmp/"
             self.full_ascii_strings = False
             self.debug = False
-            self.clip = False
             self.userMutators = None
 
             self.enableMangling = None
@@ -218,10 +216,6 @@ class ObfuscationHandler(object):
         nonReadableWarning = False
 
         for i, mutator in enumerate(self.mutatorList):
-            if self.clip and ((mutator.unreadableOutput and not nonReadableWarning) or self.full_ascii_strings):
-                printWarning("Output may consist of unreadable ASCII characters and probably won't execute from your clipboard correctly. Saving output with '-o' is recommended")
-                nonReadableWarning = True
-
             if mutator.mutatorType == "command" and mutator.reversible:
                 if reverseableMutator == mutator.longName:
                     printWarning(f"{mutator.longName} used twice in a row, part of the output may be in the clear")
