@@ -6,9 +6,6 @@ from subprocess import check_output, STDOUT, PIPE, Popen
 import sys
 import re
 
-from argcomplete import autocomplete
-import pyperclip
-
 from bashfuscator.common.colors import bold, yellow
 from bashfuscator.common.messages import activateQuietMode, printInfo, printWarning, printError, printExitMsg
 from bashfuscator.core.engine.obfuscation_handler import ObfuscationHandler
@@ -209,7 +206,7 @@ def printPayload(payload, args):
     payloadPrintLen = int((rows * (columns * .50)) / 2)
     payloadPrintLen = payloadPrintLen + (payloadPrintLen % columns)
 
-    if not args.quiet and (args.clip or args.outfile) and payloadLen > payloadPrintLen * 2:
+    if not args.quiet and (args.outfile) and payloadLen > payloadPrintLen * 2:
         # we don't need to print the whole payload, the user is given the full payload via a different method
         # thanks Dbo for most of the logic and idea: https://github.com/danielbohannon/Invoke-Obfuscation
         notShownMessageLen = len("[Not shown: characters]")
@@ -245,7 +242,6 @@ if __name__ == "__main__":
     inptOpts.add_argument("--stdin", action="store_true", help="Obfuscate stdin")
     progOpts.add_argument("-o", "--outfile", type=str, help="File to write payload to")
     progOpts.add_argument("-q", "--quiet", action="store_true", help="Print only the payload")
-    progOpts.add_argument("--clip", action="store_true", help="Copy the payload to clipboard")
     progOpts.add_argument("--test", action="store_true", help="Test the payload after running it. Not compatible with -q")
 
     obOpts = parser.add_argument_group("Obfuscation Options")
@@ -281,9 +277,7 @@ if __name__ == "__main__":
     debugOpts = parser.add_argument_group("Debugging Options")
     debugOpts = debugOpts.add_argument("--debug", action="store_true", help="Automatically terminate every command in the payload with a newline for easier payload debugging")
 
-    autocomplete(parser)
     args = parser.parse_args()
-
 
     if args.list:
         listMutators()
@@ -346,10 +340,6 @@ if __name__ == "__main__":
             outfile.write(payload.encode("utf-8"))
 
         printInfo(f"Payload written to {args.outfile}")
-
-    if args.clip:
-        pyperclip.copy(payload)
-        printInfo("Payload copied to clipboard")
 
     printPayload(payload, args)
 
