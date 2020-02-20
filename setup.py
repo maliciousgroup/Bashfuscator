@@ -12,6 +12,5 @@ setup(
     long_description=longDescription,
     author="Andrew LeFevre",
     packages=find_packages(),
-    scripts=["bashfuscator/bin/bashfuscator"],
 )
 
