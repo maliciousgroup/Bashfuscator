@@ -200,7 +200,7 @@ def printPayload(payload, args):
     rows = int(rows)
     columns = int(columns)
 
-    printInfo("Payload:\n")
+    printInfo("Payload:")
 
     payloadLen = len(payload)
     payloadPrintLen = int((rows * (columns * .50)) / 2)
