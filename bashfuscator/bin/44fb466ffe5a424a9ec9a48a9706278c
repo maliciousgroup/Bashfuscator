@@ -339,7 +339,7 @@ if __name__ == "__main__":
             outfile.write(shebang.encode("utf-8"))
             outfile.write(payload.encode("utf-8"))
 
-        printInfo(f"Payload written to {args.outfile}")
+        printInfo(f"Payload written to {args.outfile}\n")
 
     printPayload(payload, args)
 
