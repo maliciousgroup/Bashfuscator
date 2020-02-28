@@ -18,7 +18,7 @@ def activateQuietMode():
 def printInfo(msg):
     """Format and print informational messages to the terminal."""
     if not QUIET_OUTPUT:
-        print(f'{msg}')
+        print(bold(green(f'{msg}')))
 
 
 def printWarning(msg):
