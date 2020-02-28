@@ -332,7 +332,7 @@ if __name__ == "__main__":
             mutatorChainStr += f"{mutator.mutatorType.title()}/{mutator.name} -> "
 
         mutatorChainStr = mutatorChainStr[:-4]
-        printInfo(mutatorChainStr)
+        printInfo(f"\n{mutatorChainStr}\n")
 
     if args.outfile:
         with open(args.outfile, "wb") as outfile:
