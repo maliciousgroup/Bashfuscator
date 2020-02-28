@@ -3,7 +3,7 @@ Helper functions to print output to the terminal.
 """
 import sys
 
-from bashfuscator.common.colors import blue, yellow, red, bold
+from bashfuscator.common.colors import blue, green, yellow, red, bold
 
 
 QUIET_OUTPUT = False
